@@ -1,10 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const StopWatch = () =>{
 
     const [time, setTime] = useState(0); 
     const [isRunning, setIsRunning] = useState(false);
     const [laps, setLaps] = useState<number[]>([]);
+
+    useEffect(() => {
+        let timer = 0; 
+        if (isRunning) {
+          timer = setInterval(() => {
+            setTime((prevTime) => prevTime + 10);
+          }, 10);
+        } else {
+          clearInterval(timer);
+        }
+        return () => clearInterval(timer);
+      }, [isRunning]);
 
     const handleStartStop = () => {
         setIsRunning(!isRunning);
@@ -41,7 +53,10 @@ export const StopWatch = () =>{
     return(
         <>
             <h1 className='main__baner'>Stop Watch</h1>
-            
+            {formatTime(time)}
+            <button onClick={handleStartStop}>Start</button>
+            <button onClick={handleLap}>Lap</button>
+            <button onClick={handleReset}>Reset</button>
         </>
     ) 
 }  
