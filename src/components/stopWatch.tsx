@@ -5,6 +5,23 @@ export const StopWatch = () =>{
     const [time, setTime] = useState(0); 
     const [isRunning, setIsRunning] = useState(false);
     const [laps, setLaps] = useState<number[]>([]);
+
+    const handleStartStop = () => {
+        setIsRunning(!isRunning);
+      };
+    
+      const handleReset = () => {
+        setIsRunning(false);
+        setTime(0);
+        setLaps([]);
+      };
+    
+      const handleLap = () => {
+        if (isRunning) {
+          setLaps((prevLaps) => [...prevLaps, time]);
+        }
+      };
+    
   
 
     const formatTime = (time: number): string => {
@@ -24,6 +41,7 @@ export const StopWatch = () =>{
     return(
         <>
             <h1 className='main__baner'>Stop Watch</h1>
+            
         </>
     ) 
 }  
