@@ -1,7 +1,11 @@
-import React from 'react';
-
+import { useState } from 'react';
 
 export const StopWatch = () =>{
+
+    const [time, setTime] = useState(0); 
+    const [isRunning, setIsRunning] = useState(false);
+    const [laps, setLaps] = useState<number[]>([]);
+  
 
     const formatTime = (time: number): string => {
         const milliseconds = time % 1000;
@@ -21,5 +25,5 @@ export const StopWatch = () =>{
         <>
             <h1 className='main__baner'>Stop Watch</h1>
         </>
-    )
+    ) 
 }  
