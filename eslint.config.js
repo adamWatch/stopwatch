@@ -23,6 +23,34 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      "import/prefer-default-export": "off",
+      "no-tabs": [
+          "error",
+          {
+              "allowIndentationTabs": true
+          }
+      ],
+      "no-console": "off",
+      "quotes": [
+          "error",
+          "single"
+      ],
+      "@typescript-eslint/no-unused-vars": "off",
+      "linebreak-style": 0,
+      "import/extensions": 0,
+      "import/no-unresolved": 0,
+      "no-shadow": 0,
+      "consistent-return": 0,
+      "react/react-in-jsx-scope": 0,
+      "no-useless-return": 0,
+      "max-len": [
+          "error",
+          {
+              "code": 500
+          }
+      ],
+      "no-plusplus": 0,
+      "no-param-reassign": 0
     },
   },
 )
