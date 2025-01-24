@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Btn } from './Btn';
 import { LapTable } from './LapTable';
 import { ShowTimer } from './ShowTimer';
+import '../styles/StopWatch.css';
 
 export const StopWatch = () =>{
 
@@ -58,13 +59,13 @@ export const StopWatch = () =>{
      
 
   return(
-      <>
-          <h1 className='main__baner'>Stop Watch</h1>
+      <div className='container'>
+          <h1 className='baner'>Stop Watch</h1>
           <ShowTimer mainTimer={time} secondTimer={lapTime}/>
           <Btn type='start' onClick={handleStartStop}/>
           <Btn type='lap' onClick={handleLap}/>
           <Btn type='reset' onClick={handleReset}/>
           <LapTable laps={laps}/>
-      </>
+      </div>
   ) 
 }
