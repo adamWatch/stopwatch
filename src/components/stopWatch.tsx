@@ -43,9 +43,6 @@ export const StopWatch = () =>{
        
       }else{        
         setLaps((prevLaps) => {
-          console.log(prevLaps);
-          console.log(typeof(prevLaps));
-          console.log(prevLaps.length)
           const lap = time - laps.reduce((prevTime,currTime) => prevTime + currTime, 0);
          
 
@@ -62,7 +59,7 @@ export const StopWatch = () =>{
       <div className='container'>
           <h1 className='baner'>Stop Watch</h1>
           <ShowTimer mainTimer={time} secondTimer={lapTime}/>
-          <Btn type='start' onClick={handleStartStop}/>
+          <Btn type='start' isRunning={isRunning} onClick={handleStartStop}/>
           <Btn type='lap' onClick={handleLap}/>
           <Btn type='reset' onClick={handleReset}/>
           <LapTable laps={laps}/>
