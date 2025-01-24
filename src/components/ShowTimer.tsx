@@ -1,4 +1,5 @@
 import { formatTime } from '../utils/formatTime';
+import '../styles/ShowTimer.css';
 
 
 interface ShowTimeProps{
@@ -12,8 +13,10 @@ export const ShowTimer = (props:ShowTimeProps)=>{
 
     return (
         <div className="timer__container">
-            <div className="main__timer">{formatTime(mainTimer)}</div>
-            <div className="lap__timer">{formatTime(secondTimer)}</div>
+            <h3>Main Timer:</h3>
+            <div className="timer main">{formatTime(mainTimer)}</div>
+            <h3>Lap Timer:</h3>
+            <div className="timer">{formatTime(secondTimer)}</div>
         </div>
     )
 }
