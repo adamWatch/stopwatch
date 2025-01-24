@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { formatTime } from '../utils/formatTime';
 import { Btn } from './Btn';
 import { LapTable } from './LapTable';
+import { ShowTimer } from './ShowTimer';
 
 export const StopWatch = () =>{
 
-  const [time, setTime] = useState(0); 
+  const [time, setTime] = useState(0);
+  const [lapTime,setLapTime] = useState(0); 
   const [isRunning, setIsRunning] = useState(false);
   const [laps, setLaps] = useState<number[]>([]);
 
@@ -14,6 +15,7 @@ export const StopWatch = () =>{
       if (isRunning) {
         timer = setInterval(() => {
           setTime((prevTime) => prevTime + 10);
+          setLapTime((prevTime) => prevTime + 10);
         }, 10);
       } else {
         clearInterval(timer);
@@ -28,11 +30,13 @@ export const StopWatch = () =>{
     const handleReset = () => {
       setIsRunning(false);
       setTime(0);
+      setLapTime(0);
       setLaps([]);
     };
   
     const handleLap = () => {
       if (isRunning) {
+        setLapTime(0);
        if(laps.length === 0){
         setLaps((prevLaps) => [...prevLaps,time])
        
@@ -56,7 +60,7 @@ export const StopWatch = () =>{
   return(
       <>
           <h1 className='main__baner'>Stop Watch</h1>
-          {formatTime(time)}
+          <ShowTimer mainTimer={time} secondTimer={lapTime}/>
           <Btn type='start' onClick={handleStartStop}/>
           <Btn type='lap' onClick={handleLap}/>
           <Btn type='reset' onClick={handleReset}/>
