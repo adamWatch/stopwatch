@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { formatTime } from '../utils/formatTime';
+import { Btn } from './Btn';
+import { LapTable } from './LapTable';
 
 export const StopWatch = () =>{
 
@@ -34,20 +36,12 @@ export const StopWatch = () =>{
        if(laps.length === 0){
         setLaps((prevLaps) => [...prevLaps,time])
        
-      }else{
-
-        const countAllTimeLaps = (laps:number[]):number=>{
-
-          const allTimeLaps = laps.reduce((prevTime,currTime) => prevTime + currTime, 0)
-
-          return allTimeLaps
-        } 
-        
+      }else{        
         setLaps((prevLaps) => {
           console.log(prevLaps);
           console.log(typeof(prevLaps));
           console.log(prevLaps.length)
-          const lap = time - countAllTimeLaps(prevLaps);
+          const lap = time - laps.reduce((prevTime,currTime) => prevTime + currTime, 0);
          
 
           return [...prevLaps,lap];
@@ -63,21 +57,10 @@ export const StopWatch = () =>{
       <>
           <h1 className='main__baner'>Stop Watch</h1>
           {formatTime(time)}
-          <button onClick={handleStartStop}>Start</button>
-          <button onClick={handleLap}>Lap</button>
-          <button onClick={handleReset}>Reset</button>
-          <tbody>
-            {laps.map((lap, index) => (
-              <tr key={index}>
-                <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'center' }}>{
-                  index + 1
-                }</td>
-                <td style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'center' }}>
-                  {formatTime(lap)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          <Btn type='start' onClick={handleStartStop}/>
+          <Btn type='lap' onClick={handleLap}/>
+          <Btn type='reset' onClick={handleReset}/>
+          <LapTable laps={laps}/>
       </>
   ) 
 }
