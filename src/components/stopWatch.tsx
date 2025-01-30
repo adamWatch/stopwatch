@@ -27,7 +27,10 @@ export const StopWatch = () =>{
   const handleStartStop = () => {
       setIsRunning(!isRunning);
     };
-  
+  const handleStop =()=>{
+    console.log('de')
+  }  
+
     const handleReset = () => {
       setIsRunning(false);
       setTime(0);
@@ -59,9 +62,12 @@ export const StopWatch = () =>{
       <div className='container'>
           <h1 className='baner'>Stop Watch</h1>
           <ShowTimer mainTimer={time} secondTimer={lapTime}/>
-          <Btn type='start' isRunning={isRunning} onClick={handleStartStop}/>
-          <Btn type='lap' onClick={handleLap}/>
-          <Btn type='reset' onClick={handleReset}/>
+          <div className='btns__container'>
+           <Btn type='start' isRunning={isRunning} onClick={handleStartStop}/>
+           <Btn type='stop' onClick={handleStop}/>
+           <Btn type='lap' onClick={handleLap}/>
+           <Btn type='reset' onClick={handleReset}/>
+          </div>
           <LapTable laps={laps}/>
       </div>
   ) 
