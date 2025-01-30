@@ -3,12 +3,14 @@ import { Btn } from './Btn';
 import { LapTable } from './LapTable';
 import { ShowTimer } from './ShowTimer';
 import '../styles/StopWatch.css';
+import { Summary } from './Summary';
 
 export const StopWatch = () =>{
 
   const [time, setTime] = useState(0);
   const [lapTime,setLapTime] = useState(0); 
   const [isRunning, setIsRunning] = useState(false);
+  const [isStop, setIsStop] = useState(false);
   const [laps, setLaps] = useState<number[]>([]);
 
   useEffect(() => {
@@ -28,11 +30,16 @@ export const StopWatch = () =>{
       setIsRunning(!isRunning);
     };
   const handleStop =()=>{
-    console.log('de')
+    if(laps.length === 0) return;
+    handleLap();
+    setIsStop(true);
+    setIsRunning(false);
+    
   }  
 
     const handleReset = () => {
       setIsRunning(false);
+      setIsStop(false);
       setTime(0);
       setLapTime(0);
       setLaps([]);
@@ -58,17 +65,24 @@ export const StopWatch = () =>{
   }
      
 
-  return(
+  
+    return isStop ? (
       <div className='container'>
-          <h1 className='baner'>Stop Watch</h1>
-          <ShowTimer mainTimer={time} secondTimer={lapTime}/>
-          <div className='btns__container'>
-           <Btn type='start' isRunning={isRunning} onClick={handleStartStop}/>
-           <Btn type='stop' onClick={handleStop}/>
-           <Btn type='lap' onClick={handleLap}/>
-           <Btn type='reset' onClick={handleReset}/>
-          </div>
-          <LapTable laps={laps}/>
+        <h1 className='baner'>Summary</h1>
+        <Summary mainTime={time} laps={laps}/>
+        <Btn type='reset' onClick={handleReset}/>
       </div>
-  ) 
+    ) : (
+      <div className='container'>
+        <h1 className='baner'>Stop Watch</h1>
+        <ShowTimer mainTimer={time} secondTimer={lapTime} />
+        <div className='btns__container'>
+          <Btn type='start' isRunning={isRunning} onClick={handleStartStop} />
+          <Btn type='stop' onClick={handleStop} />
+          <Btn type='lap' onClick={handleLap} />
+          <Btn type='reset' onClick={handleReset} />
+        </div>
+        <LapTable laps={laps} />
+      </div>
+    );
 }
