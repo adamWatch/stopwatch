@@ -1,4 +1,5 @@
 import { formatTime } from '../utils/formatTime';
+import '../styles/Summary.css';
 
 interface SummaryProps {
     mainTime: number;
@@ -16,16 +17,16 @@ export const Summary = (props:SummaryProps) =>{
 
     return (
         <div className="summary__container">
-            <h2 className='summary__timer'>Main Timer:</h2>
+            <h2 className='summary__baner'>Main Timer:</h2>
             <div className="timer main">{formatTime(mainTime)}</div>
             <h3>Average lap time:</h3>
-            <div>{formatTime(averageLapTime)}</div>
+            <div className='summary__item'>{formatTime(averageLapTime)}</div>
             <h3>Best lap Time:</h3>
-            <div>{formatTime(bestLapTime)}</div>
+            <div className='summary__item best'>{formatTime(bestLapTime)}</div>
             <h3>Worst lap Time:</h3>
-            <div>{formatTime(worstLapTime)}</div>
+            <div className='summary__item worst'>{formatTime(worstLapTime)}</div>
             <h3>Amount of laps:</h3>
-            <div>{laps.length}</div>
+            <div className='summary__item'>{laps.length}</div>
             
         </div>
 
