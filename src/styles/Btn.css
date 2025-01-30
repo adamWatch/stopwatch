@@ -1,0 +1,26 @@
+button {
+    font-size: 1.6rem;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    background-color: rgb(105, 4, 105);
+    color: azure;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+button:hover {
+    background-color: rgb(161, 5, 161);
+}
+
+.start {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+
+.reset {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

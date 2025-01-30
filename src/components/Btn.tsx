@@ -1,5 +1,6 @@
 import { faPlay, faStop,faPause } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../styles/Btn.css';
 interface BtnProps{
     type: string;
     isRunning?:boolean
